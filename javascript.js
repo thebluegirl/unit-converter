@@ -5,40 +5,41 @@ const massConvert = document.getElementById("mass-convert");
 const convertBtn = document.getElementById("convert-btn");
 
 function validateNumberType() {
-    if (+(numText.value) === isNaN) {
-        return alert("This can only work with numbers. Please put in only numbers");
-    } 
+    if (isNaN(+(numText.value))) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function nanRender() {
+    lengthConvert.innerText = "This can only work with numbers. Please enter a number and try again.";
+    volumeConvert.innerText = "This can only work with numbers. Please enter a number and try again.";
+    massConvert.innerText = "This can only work with numbers. Please enter a number and try again.";
 }
 
 function convertToFeet() {
-    validateNumberType();
     return (+(numText.value) * 3.281);
-
 }
 
 function convertToMeter() {
-    validateNumberType();
     return (+(numText.value) / 3.281);
 }
 
 function convertToLitres() {
-    validateNumberType();
     return (+(numText.value) / 0.264); 
 }
 
 function convertToGallons() {
-    validateNumberType();
     return (+(numText.value) * 0.264);
 }
 
 function convertToKilograms() {
-  validateNumberType();
-  return (+(numText.value) / 2.204);
+    return (+(numText.value) / 2.204);
 }
 
 function convertToPounds() {
-  validateNumberType();
-  return (+(numText.value) * 2.204);
+    return (+(numText.value) * 2.204);
 }
 
 function render() {
@@ -48,6 +49,9 @@ function render() {
 }
 
 convertBtn.addEventListener("click", function (e) {
-    validateNumberType();
-    render();
+    if (!validateNumberType()) {
+        nanRender();
+    } else {
+        render();
+    }
 })
